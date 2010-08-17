@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Create New Quiz</title>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/ui-lightness/jquery-ui.css"/>
+<link rel="stylesheet" type="text/css" href="/static/edit.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/json2.js"></script>
+<script type="text/javascript" src="/static/edit.js"></script>
+</head>
+
+<body>
+<h1>Create New Quiz</h1>
+
+<p><b class="title-label">Title:</b><br />
+<input type="text" name="title-input" id="title-input">
+
+<div id="questions">
+
+<div class="quiz-question">
+  <span>Question:</span><br />
+  <textarea rows="1" cols="1"></textarea><br />
+  <span>Answers (check the right one):</span><br />
+  <div class="answers">
+    <input type="radio" value="0" name="FIXME" class="checkbox" checked="true">
+    <input type="text" class="answer"><br />
+
+    <input type="radio" value="1" name="FIXME" class="checkbox">
+    <input type="text" class="answer"><br />
+
+    <input type="radio" value="2" name="FIXME" class="checkbox">
+    <input type="text" class="answer"><br />
+
+    <input type="radio" value="3" name="FIXME" class="checkbox">
+    <input type="text" class="answer"><br />
+ </div>
+</div>
+
+</div>
+
+<button id="addquestion">Add Question</button>
+
+<button id="getjson">Get JSON</button>
+
+<pre id="jsonyo"></pre>
+
+</body> </html>
