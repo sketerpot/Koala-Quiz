@@ -14,11 +14,11 @@ from markdown2 import markdown
 class FrontPage(webapp.RequestHandler):
     def get(self):
         query = models.Quiz.all().order('-title')
-        quizes = []
+        quizzes = []
         for quiz in query.fetch(50):
-            quizes.append({'title': markdown_nopara(quiz.title),
-                           'link': '/view?key=' + str(quiz.key())})
-        template_values = {'quizes': quizes}
+            quizzes.append({'title': markdown_nopara(quiz.title),
+                            'link': '/view?key=' + str(quiz.key())})
+        template_values = {'quizzes': quizzes}
         path = os.path.join(os.path.dirname(__file__), 'templates', 'front_page.html')
         self.response.out.write(template.render(path, template_values))
 
