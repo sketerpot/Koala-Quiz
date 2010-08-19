@@ -1,3 +1,8 @@
+body {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
 #maintable {
     width: 100%;
     height: 90%;
@@ -33,8 +38,11 @@ h3 {
 #make-quiz-bubble {
     width: 30em;
     height: 20em;
-    margin-left: 50px;
-    margin-top: 40px;
+    position: absolute;
+    right: 150px;
+    top: 220px;
+   /*  margin-left: 50px; */
+/*     margin-top: 40px; */
     background: #F38630;
     padding: 1em;
     text-align: center;
@@ -57,7 +65,7 @@ h3 {
 #back_up {
     position: absolute;
     color: #F38630;
-    right: 1em;
+    right: 230px;
     text-decoration: none;
 }
 

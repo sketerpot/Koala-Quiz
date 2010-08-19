@@ -1,3 +1,8 @@
+body {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
 #title-input {
     font-size: 200%;
     width: 600px;
@@ -51,7 +56,7 @@ input[type="submit"] {
 #back_up {
     position: absolute;
     color: #F38630;
-    right: 1em;
+    right: 230px;
     text-decoration: none;
 }
 
@@ -77,8 +82,6 @@ input[type="submit"] {
 	margin: 0;
 	padding: 0;
 }
-
-/** Header */
 
 #qunit-header {
 	padding: 0.5em 0 0.5em 1em;
