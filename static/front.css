@@ -117,6 +117,10 @@ ul a {
     text-decoration: none;
 }
 
+li {
+    margin-bottom: 10px;
+}
+
 
 /** Tests: Pass/Fail */
 
