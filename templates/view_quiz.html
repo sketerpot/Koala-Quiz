@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Quiz: {{ title }}</title>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/ui-lightness/jquery-ui.css"/>
+<link rel="stylesheet" type="text/css" href="/static/view.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/view.js"></script>
+</head>
+
+<body>
+<h1 id="qunit-header">{{ title }}</h1>
+<h2 id="qunit-banner" class="qunit-pass"></h2>
+
+<div id="questions">
+{% for question in questions %}
+<div class="quiz-question">
+  <div class="question">{{ question.question }}</div>
+
+  <div class="answers">
+    {% for answer in question.answers %}
+    <div>
+    <input type="radio" value="{{ forloop.counter0 }}"
+           name="rad{{ forloop.parentloop.counter0 }}"
+           class="checkbox">
+    
+    <span>{{ answer.0 }}</span> 
+    </div>
+    {% endfor %}
+ </div>
+</div>
+{% endfor %}
+</div>
+
+<div id="qunit-testresult">
+  <button id="submit">Submit answers</button>
+</div>
+
+</body> </html>

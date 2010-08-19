@@ -27,7 +27,7 @@ function randomUUID() {
     return s.join('');
 }
 
-var question_html = '<div class="quiz-question" style="display: none"><span>Question:</span><br /><textarea rows="1" cols="1"></textarea><br /><span>Answers (check the right one):</span><br /><div class="answers"><input type="radio" name="FIXME" value="0" class="checkbox" checked="true"> <input type="text" class="answer"><br /><input type="radio" value="1" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /><input type="radio" value="2" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /><input type="radio" value="3" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /></div></div>';
+var question_html = '<div class="quiz-question" style="display: none"><div class="label">Question:</div><br /><textarea rows="1" cols="1"></textarea><br /><div class="label">Answers (check the right one):</div><br /><div class="answers"><input type="radio" name="FIXME" value="0" class="checkbox" checked="true"> <input type="text" class="answer"><br /><input type="radio" value="1" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /><input type="radio" value="2" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /><input type="radio" value="3" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /></div></div>';
 
 // Create a new question form and slide it in at the bottom.
 function add_question() {
@@ -63,11 +63,11 @@ function build_json() {
     return {'title': $("#title-input").val(),
 	    'questions': questions};
 }
-	
-function show_json() {
-    $("#jsonyo").text(JSON.stringify(build_json(), undefined, '    '));
-}
 
+// Create the JSON and put it in the hidden JSON field prior to form
+// submission.
 $(function() {
-    $("#getjson").button().click(show_json);
+    $("input:submit").button().click(function() {
+	$("#quiz-json").val(JSON.stringify(build_json()));
+    });
 });

@@ -11,17 +11,18 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></scr
 </head>
 
 <body>
-<h1>Create New Quiz</h1>
+<h1 id="qunit-header">Create New Quiz</h1>
+<h2 id="qunit-banner" class="qunit-pass"></h2>
 
-<p><b class="title-label">Title:</b><br />
-<input type="text" name="title-input" id="title-input">
+<div id="title-p"><b class="title-label">Title:</b><br />
+<input type="text" name="title-input" id="title-input"></div>
 
 <div id="questions">
 
 <div class="quiz-question">
-  <span>Question:</span><br />
+  <div class="label">Question:</div>
   <textarea rows="1" cols="1"></textarea><br />
-  <span>Answers (check the right one):</span><br />
+  <div class="label">Answers (check the right one):</div>
   <div class="answers">
     <input type="radio" value="0" name="FIXME" class="checkbox" checked="true">
     <input type="text" class="answer"><br />
@@ -39,10 +40,13 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></scr
 
 </div>
 
-<button id="addquestion">Add Question</button>
+<div id="qunit-testresult">
+<table><tr><td><button id="addquestion">Add Question</button></td>
 
-<button id="getjson">Get JSON</button>
-
-<pre id="jsonyo"></pre>
+<td><form action="/do/save_quiz" method="post">
+  <input type="hidden" name="json" id="quiz-json" />
+  <input type="submit" value="Save Quiz" />
+</form></td></tr></table>
+</div>
 
 </body> </html>
