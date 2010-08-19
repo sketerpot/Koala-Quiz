@@ -22,7 +22,7 @@
 }
 
 .answers > input.answer {
-    width: 540px;
+    width: 800px;
     font-size: 12pt;
 }
 
@@ -46,6 +46,13 @@ input[type="submit"] {
     background-color: #D2E0E6;
     border: thin #D2E0E6 solid;
     padding: 0.4em 0.5em 0.4em 0.5em;
+}
+
+#back_up {
+    position: absolute;
+    color: #F38630;
+    right: 1em;
+    text-decoration: none;
 }
 
 .quiz-question {

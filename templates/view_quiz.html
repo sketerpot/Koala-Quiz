@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html> <head>
-<title>Quiz: {{ title }}</title>
+<title>Quiz: {{ title_text }}</title>
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/ui-lightness/jquery-ui.css"/>
 <link rel="stylesheet" type="text/css" href="/static/view.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -10,7 +10,7 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></scr
 </head>
 
 <body>
-<h1 id="qunit-header">{{ title }}</h1>
+<h1 id="qunit-header">{{ title }} <a href="/" id="back_up">Koala Quiz</a></h1>
 <h2 id="qunit-banner" class="qunit-pass"></h2>
 
 <div id="questions">
@@ -23,9 +23,10 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></scr
     <div>
     <input type="radio" value="{{ forloop.counter0 }}"
            name="rad{{ forloop.parentloop.counter0 }}"
+           id="rad{{ forloop.parentloop.counter0 }}-{{ forloop.counter0 }}"
            class="checkbox">
     
-    <span>{{ answer.0 }}</span> 
+    <label for="rad{{ forloop.parentloop.counter0 }}-{{ forloop.counter0 }}">{{ answer.0 }}</label>
     </div>
     {% endfor %}
  </div>

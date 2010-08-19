@@ -16,7 +16,7 @@ class FrontPage(webapp.RequestHandler):
         query = models.Quiz.all().order('-title')
         quizes = []
         for quiz in query.fetch(50):
-            quizes.append({'title': quiz.title,
+            quizes.append({'title': markdown_nopara(quiz.title),
                            'link': '/view?key=' + str(quiz.key())})
         template_values = {'quizes': quizes}
         path = os.path.join(os.path.dirname(__file__), 'templates', 'front_page.html')
@@ -57,6 +57,7 @@ class ViewQuiz(webapp.RequestHandler):
             return
         template_values = {
             'title': markdown(quiz.title)[3:-5],
+            'title_text': quiz.title,
             'questions': process_markdown(json.loads(quiz.content))
             }
         path = os.path.join(os.path.dirname(__file__), 'templates', 'view_quiz.html')

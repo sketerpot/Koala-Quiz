@@ -54,6 +54,13 @@ h3 {
     font-size: large;
 }
 
+#back_up {
+    position: absolute;
+    color: #F38630;
+    right: 1em;
+    text-decoration: none;
+}
+
 /* ************* */
 
 /* FIXME */
@@ -103,6 +110,11 @@ h3 {
 	background-color: #2b81af;
 	color: #fff;
 	text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px;
+}
+
+ul a {
+    font-weight: bold;
+    text-decoration: none;
 }
 
 

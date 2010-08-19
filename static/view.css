@@ -165,3 +165,10 @@ strong b.fail                               { color: #710909; }
 	top: -10000px;
 	left: -10000px;
 }
+
+#back_up {
+    position: absolute;
+    color: #F38630;
+    right: 1em;
+    text-decoration: none;
+}
