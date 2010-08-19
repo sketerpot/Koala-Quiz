@@ -13,9 +13,14 @@ from markdown2 import markdown
 
 class FrontPage(webapp.RequestHandler):
     def get(self):
-        # FIXME: list all non-draft quizzes, and have a button to make
-        # a new quiz. Use templates.
-        self.response.out.write("ORGANS IN MAINS")
+        query = models.Quiz.all().order('-title')
+        quizes = []
+        for quiz in query.fetch(50):
+            quizes.append({'title': quiz.title,
+                           'link': '/view?key=' + str(quiz.key())})
+        template_values = {'quizes': quizes}
+        path = os.path.join(os.path.dirname(__file__), 'templates', 'front_page.html')
+        self.response.out.write(template.render(path, template_values))
 
 class EditQuiz(webapp.RequestHandler):
     def get(self):
@@ -61,17 +66,21 @@ class ViewQuiz(webapp.RequestHandler):
 # Markdown processing
 #######################
 
+def markdown_nopara(str):
+    """Process str as markdown, but remove the <p> and </p> at the
+    beginning and end. This is only safe for strings with a single
+    paragraph."""
+    return markdown(str)[3:-5]
+
 def process_markdown(questions):
     """Process the Markdown in JSON quiz data into HTML. This
     destructively modifies data, so if that's a problem, be sure to
     pass a copy."""
-    logging.debug(questions)
     for question in questions:
         question['question'] = markdown(question['question'])
         for i in range(len(question['answers'])):
             this = question['answers'][i][0]
-            question['answers'][i][0] = markdown(this)[3:-5] # remove <p>...</p>
-    logging.debug(questions)
+            question['answers'][i][0] = markdown_nopara(this)
     return questions
 
 ##################

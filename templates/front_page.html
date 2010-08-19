@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Koala Quiz</title>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/ui-lightness/jquery-ui.css"/>
+<link rel="stylesheet" type="text/css" href="/static/front.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(function() {
+   $("#make-quiz-button").button();
+});
+</script>
+</head>
+
+<body>
+<h1 id="qunit-header">Take a quiz, or make a quiz.</h1>
+<h2 id="qunit-banner" class="qunit-pass"></h2>
+
+<table id="maintable"><tr>
+  <td id="quiz-list">
+    <div class="bubble" style="height: 90%">
+      <h3>Quiz List</h3>
+
+      <ul>
+	{% for quiz in quizes %}
+	<li><a href="{{ quiz.link }}">{{ quiz.title }}</li>
+	{% endfor %}
+    </ul>
+  </div>
+  </td>
+  <td>
+    <div id="make-quiz-bubble">
+      <div>
+	<a href="/edit" id="make-quiz-button">Make Quiz!</a>
+	<div style="margin-top: 2em;">You can make a quiz. It's super easy! Probably!</div>
+      </div>
+    </div>
+  </td>
+</tr></table>
+   
+</body> </html>
