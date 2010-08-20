@@ -36,8 +36,8 @@ h3 {
 }
 
 #make-quiz-bubble {
-    width: 30em;
-    height: 20em;
+    width: 320px;
+    height: 213px;
     position: absolute;
     right: 150px;
     top: 220px;
@@ -55,7 +55,7 @@ h3 {
 }
 
 #make-quiz-bubble > div {
-    margin-top: 6em;
+    margin-top: 3em;
     font-weight: bold;
     font-size: large;
 }

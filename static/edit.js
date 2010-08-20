@@ -27,7 +27,7 @@ function randomUUID() {
     return s.join('');
 }
 
-var question_html = '<div class="quiz-question" style="display: none"><div class="label">Question:</div><br /><textarea rows="1" cols="1"></textarea><br /><div class="label">Answers (check the right one):</div><br /><div class="answers"><input type="radio" name="FIXME" value="0" class="checkbox" checked="true"> <input type="text" class="answer"><br /><input type="radio" value="1" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /><input type="radio" value="2" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /><input type="radio" value="3" name="FIXME" class="checkbox"> <input type="text" class="answer"><br /></div></div>';
+var question_html = '<div class="quiz-question" style="display: none"><div class="label">Question:</div><br /><textarea rows="11" cols="64"></textarea><br /><div class="label">Answers (check the right one):</div><br /><div class="answers"><input type="radio" name="FIXME" value="0" class="checkbox" checked="true"> <input type="text" class="answer" size="70"><br /><input type="radio" value="1" name="FIXME" class="checkbox"> <input type="text" class="answer" size="70"><br /><input type="radio" value="2" name="FIXME" class="checkbox"> <input type="text" class="answer" size="70"><br /><input type="radio" value="3" name="FIXME" class="checkbox"> <input type="text" class="answer" size="70"><br /></div></div>';
 
 // Create a new question form and slide it in at the bottom.
 function add_question() {

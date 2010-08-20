@@ -20,6 +20,7 @@ body {
     height: 200px;
     margin-left: 10px;
     font-size: 12pt;
+    font-family: "Helvetica Neue", "Bitstream Vera Sans", Arial, Verdana, sans-serif;
 }
 
 .answers > input.checkbox {
@@ -27,7 +28,7 @@ body {
 }
 
 .answers > input.answer {
-    width: 800px;
+    width: 90%;
     font-size: 12pt;
 }
 
