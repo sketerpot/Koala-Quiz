@@ -13,11 +13,20 @@ from markdown2 import markdown
 
 class FrontPage(webapp.RequestHandler):
     def get(self):
-        query = models.Quiz.all().order('-title')
-        quizzes = []
-        for quiz in query.fetch(50):
-            quizzes.append({'title': markdown_nopara(quiz.title),
-                            'link': '/view?key=' + str(quiz.key())})
+        # Try memcache first.
+        quizzes_json = memcache.get('quizzes')
+        if quizzes_json is None:
+            # Not in memcache. Build quiz list from datastore.
+            query = models.Quiz.all().order('-title')
+            quizzes = []
+            for quiz in query.fetch(100):
+                quizzes.append({'title': markdown_nopara(quiz.title),
+                                'link': '/view?key=' + str(quiz.key())})
+            memcache.add('quizzes', json.dumps(quizzes))
+        else:
+            # Hooray! Cache hit. Just load JSON data.
+            quizzes = json.loads(quizzes_json)
+        # Set up and run template
         template_values = {'quizzes': quizzes}
         path = os.path.join(os.path.dirname(__file__), 'templates', 'front_page.html')
         self.response.out.write(template.render(path, template_values))
@@ -41,6 +50,7 @@ class SaveQuiz(webapp.RequestHandler):
                            draft = False,
                            content = db.Text(json.dumps(data['questions'])))
         quiz.put()          # Save data in database
+        memcache.delete('quizzes') # Invalidate cache
         self.redirect('/view?key=' + str(quiz.key()))
 
 class ViewQuiz(webapp.RequestHandler):
