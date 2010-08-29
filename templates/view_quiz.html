@@ -6,6 +6,8 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript"
 src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/json2.js"></script>
+<script type="text/javascript">var number_of_questions = {{ number_of_questions }};</script>
 <script type="text/javascript" src="/static/view.js"></script>
 </head>
 
@@ -15,9 +17,9 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></scr
 
 <div id="questions">
 {% for question in questions %}
-<div class="quiz-question">
+<div class="quiz-question" given_answer="{{ question.given_answer }}">
   <div class="question">{{ question.question }}</div>
-
+  
   <div class="answers">
     {% for answer in question.answers %}
     <div>
@@ -26,8 +28,9 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></scr
            id="rad{{ forloop.parentloop.counter0 }}-{{ forloop.counter0 }}"
            class="checkbox">
     
-    <label for="rad{{ forloop.parentloop.counter0 }}-{{ forloop.counter0 }}">{{ answer.0 }}</label>
-    </div>
+    <label for="rad{{ forloop.parentloop.counter0 }}-{{ forloop.counter0 }}"
+           class="answer-{{ answer.1 }}">{{ answer.0 }}</label>
+   </div>
     {% endfor %}
  </div>
 </div>
@@ -35,7 +38,15 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></scr
 </div>
 
 <div id="qunit-testresult">
-  <button id="submit">Submit answers</button>
+  {% if not given_answers %}
+  <form action="/view" action="GET">
+    <input type="hidden" name="key" value="{{ key_str }}" />
+    <input type="hidden" name="answers" id="answers-hidden" value="" />
+    <input type="submit" id="submit" value="Submit answers" />
+  </form>
+  {% else %}
+  <script type="text/javascript">show_answers();</script>
+  {% endif %}
 </div>
 
 </body> </html>

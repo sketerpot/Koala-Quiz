@@ -34,6 +34,8 @@ body {
 	box-shadow: inset 0px 2px 13px #999;
 	-moz-box-shadow: inset 0px 2px 13px #999;
 	-webkit-box-shadow: inset 0px 2px 13px #999;
+
+	border: thin #ccc solid;
 }
 
 #qunit-header, #qunit-banner, #qunit-testresult {
@@ -77,4 +79,23 @@ body {
     color: #F38630;
     right: 230px;
     text-decoration: none;
+}
+
+/* Answer classes */
+
+.answer-True {
+    color: green;   
+}
+
+.answer-Chosen {
+    font-weight: bold;
+}
+
+.answer-Incorrect:after {
+    content: " (wrong answer)";
+}
+
+.answer-Incorrect {
+    color: red;
+    font-weight: normal !important;
 }

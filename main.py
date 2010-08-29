@@ -65,10 +65,22 @@ class ViewQuiz(webapp.RequestHandler):
             self.error(404)
             self.response.out.write('<h1>404! No such quiz exists.</h1>')
             return
+        # If answers were specified, get them and show the graded quiz.
+        answers = decode_answers(self.request.get('answers'))
+        questions = process_markdown(json.loads(quiz.content))
+        for i in range(len(answers)):
+            questions[i]['given_answer'] = answers[i]
+        if answers is None or len(answers) == 0:
+            for question in questions:
+                for i in range(len(question['answers'])):
+                    question['answers'][i][1] = None # Strip away answers
         template_values = {
             'title': markdown(quiz.title)[3:-5],
             'title_text': quiz.title,
-            'questions': process_markdown(json.loads(quiz.content))
+            'questions': questions,
+            'key_str': key_str,
+            'given_answers': answers,
+            'number_of_questions': len(questions)
             }
         path = os.path.join(os.path.dirname(__file__), 'templates', 'view_quiz.html')
         self.response.out.write(template.render(path, template_values))
@@ -93,6 +105,22 @@ def process_markdown(questions):
             this = question['answers'][i][0]
             question['answers'][i][0] = markdown_nopara(this)
     return questions
+
+#################
+# Data mangling
+#################
+
+def decode_answers(str):
+    """Decode an answer string. The answer string should consist of
+    answer numbers, separated by spaces. If the answer string is None,
+    this function will return None rather than raising an
+    error. Invalid numbers are quietly skipped."""
+    if str is None: return None
+    answers = []
+    for x in str.split():
+        try: answers.append(int(x))
+        except ValueError: pass
+    return answers
 
 ##################
 # App setup code
